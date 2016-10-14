@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - myssh@localhost" uuid="08500ec6-defa-40e3-ac6a-209e3d1d4bac">
+    <database-info product="MySQL" version="5.7.15" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+      <schema id="1" name="myssh"/>
+      <table id="2" parent="1" name="department"/>
+      <table id="3" parent="1" name="employee"/>
+      <column id="4" parent="2" name="did">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="5" parent="2" name="dname">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="6" parent="2" name="ddesc">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <key id="7" parent="2" name="PRIMARY">
+        <columns>did</columns>
+        <primary>1</primary>
+      </key>
+      <column id="8" parent="3" name="eid">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="9" parent="3" name="ename">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="10" parent="3" name="sex">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="11" parent="3" name="birthday">
+        <data-type>date</data-type>
+      </column>
+      <column id="12" parent="3" name="joinDate">
+        <data-type>date</data-type>
+      </column>
+      <column id="13" parent="3" name="eno">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="14" parent="3" name="username">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="15" parent="3" name="password">
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="16" parent="3" name="dno">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="17" parent="3" name="FK4722E6AE63853033">
+        <columns>dno</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="18" parent="3" name="PRIMARY">
+        <columns>eid</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="19" parent="3" name="FK4722E6AE63853033">
+        <columns>dno</columns>
+        <ref-key>~.department.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+</component>
