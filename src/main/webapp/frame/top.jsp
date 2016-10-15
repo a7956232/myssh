@@ -17,7 +17,8 @@
 
 <body bgcolor="#0099FF">
 <div class="div1">
-    欢迎您：<s:property value="#session.existEmployee.ename"/>
+    欢迎您：<s:property value="#session.existEmployee.ename"/>&nbsp;&nbsp;
+    <a href="${pageContext.request.contextPath}/employee_logout.action" target="_top">安全退出</a>
 </div>
 </body>
 </html>

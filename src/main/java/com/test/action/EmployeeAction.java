@@ -85,4 +85,11 @@ public class EmployeeAction extends ActionSupport implements ModelDriven<Employe
         employeeService.update(employee);
         return "updateSuccess";
     }
+
+    public String logout(){
+        if(ActionContext.getContext().getSession().get("existEmployee")!=null){
+            ActionContext.getContext().getSession().remove("existEmployee");
+        }
+        return "logout";
+    }
 }
