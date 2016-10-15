@@ -29,6 +29,7 @@
     <div class="loginBox">
         <h3><s:actionerror/></h3>
         <div class="login_cont">
+            <s:if test="#session.existEmployee==null">
             <ul class="login">
                 <li class="l_tit">用户名</li>
                 <li class="mb_10"><input type="text" name="username" class="login_input user_icon"></li>
@@ -37,6 +38,14 @@
 
                 <li><input type="submit" value="" class="login_btn"></li>
             </ul>
+            </s:if>
+            <s:if test="#session.existEmployee!=null">
+                <div>
+                    您已登陆！&nbsp;&nbsp;
+                    <a href="${pageContext.request.contextPath}/employee_logout.action">注销</a>&nbsp;&nbsp;
+                    <a href="javascript:history.go(-1)">返回</a>
+                </div>
+            </s:if>
             <div class="login_partners">
                 <p class="l_tit">使用合作方账号登陆网站</p>
                 <ul class="login_list clearfix">

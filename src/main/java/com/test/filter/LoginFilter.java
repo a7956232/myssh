@@ -22,16 +22,16 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession();
         String path = request.getRequestURI();
 
-        if(path.contains("index")){
+        if(path.contains("index")||path.contains("login")){
             filterChain.doFilter(servletRequest,servletResponse);
             return;
         }
 
-//        if(path.endsWith(".css")||path.endsWith(".js")||path.endsWith(".jpg")||
-//                path.endsWith(".png")||path.endsWith(".gif")){
-//            filterChain.doFilter(servletRequest,servletResponse);
-//            return;
-//        }
+        if(path.endsWith(".css")||path.endsWith(".js")||path.endsWith(".jpg")||
+                path.endsWith(".png")||path.endsWith(".gif")){
+            filterChain.doFilter(servletRequest,servletResponse);
+            return;
+        }
 
         if(session.getAttribute("existEmployee")!=null){
             filterChain.doFilter(servletRequest,servletResponse);
