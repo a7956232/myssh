@@ -22,7 +22,11 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession();
         String path = request.getRequestURI();
 
-        if(path.contains("index")||path.contains("login")){
+        response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+        response.setHeader("Pragma","no-cache");
+        response.setDateHeader("Expires",0);
+
+        if(path.contains("login")||path.contains("font")){
             filterChain.doFilter(servletRequest,servletResponse);
             return;
         }
@@ -36,7 +40,7 @@ public class LoginFilter implements Filter {
         if(session.getAttribute("existEmployee")!=null){
             filterChain.doFilter(servletRequest,servletResponse);
         }else {
-            response.sendRedirect("/myssh/index.jsp");
+            response.sendRedirect("/myssh/login.jsp");
         }
     }
 
