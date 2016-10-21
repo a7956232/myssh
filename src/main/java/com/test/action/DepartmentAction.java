@@ -7,6 +7,8 @@ import com.test.entity.Department;
 import com.test.entity.PageBean;
 import com.test.service.DepartmentService;
 
+import java.util.List;
+
 /**
  * Created by 95 on 2016/10/12.
  */
@@ -30,10 +32,16 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
         this.departmentService = departmentService;
     }
 
-    public String findAll(){
+    public String findByPage(){
         PageBean<Department> pageBean = departmentService.findByPage(currPage);
         //将pageBean存入到值栈中
         ActionContext.getContext().getValueStack().push(pageBean);
+        return "findByPage";
+    }
+
+    public String findAll(){
+        List<Department> list = departmentService.findAll();
+        ActionContext.getContext().getValueStack().set("Dlist",list);
         return "findAll";
     }
 

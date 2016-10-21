@@ -61,4 +61,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void update(Employee employee) {
         employeeDao.update(employee);
     }
+
+    @Override
+    public List findAll() {
+        return employeeDao.findAll();
+    }
 }

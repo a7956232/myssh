@@ -50,9 +50,15 @@ public class EmployeeAction extends ActionSupport implements ModelDriven<Employe
         }
     }
 
-    public String findAll(){
+    public String findByPage(){
         PageBean<Employee> pageBean = employeeService.findByPage(currPage);
         ActionContext.getContext().getValueStack().push(pageBean);
+        return "findByPage";
+    }
+
+    public String findAll(){
+        List<Employee> list = employeeService.findAll();
+        ActionContext.getContext().getValueStack().set("Elist",list);
         return "findAll";
     }
 

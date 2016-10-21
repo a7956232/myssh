@@ -3,6 +3,8 @@ package com.test.service;
 import com.test.entity.Employee;
 import com.test.entity.PageBean;
 
+import java.util.List;
+
 /**
  * Created by 95 on 2016/10/12.
  */
@@ -19,4 +21,6 @@ public interface EmployeeService {
     void delete(Employee employee);
 
     void update(Employee employee);
+
+    List findAll();
 }
