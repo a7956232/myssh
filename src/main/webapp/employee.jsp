@@ -311,7 +311,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/employee_logout.action">
                                 <i class="icon-off"></i>
                                 安全退出
                             </a>
