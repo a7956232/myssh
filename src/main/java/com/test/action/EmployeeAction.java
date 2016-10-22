@@ -59,6 +59,8 @@ public class EmployeeAction extends ActionSupport implements ModelDriven<Employe
     public String findAll(){
         List<Employee> list = employeeService.findAll();
         ActionContext.getContext().getValueStack().set("Elist",list);
+        List<Department> Dlist = departmentService.findAll();
+        ActionContext.getContext().getValueStack().set("Dlist",Dlist);
         return "findAll";
     }
 

@@ -2,11 +2,11 @@
   Created by IntelliJ IDEA.
   User: 95
   Date: 2016/10/21
-  Time: 20:49
+  Time: 21:04
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +18,11 @@
 
     <!-- basic styles -->
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
 
     <!--[if IE 7]>
-    <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome-ie7.min.css" />
     <![endif]-->
 
     <!-- page specific plugin styles -->
@@ -33,25 +33,25 @@
 
     <!-- ace styles -->
 
-    <link rel="stylesheet" href="assets/css/ace.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-skins.min.css" />
 
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-ie.min.css" />
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
 
-    <script src="assets/js/ace-extra.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/html5shiv.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -224,7 +224,7 @@
 
                         <li>
                             <a href="#">
-                                <img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                <img src="${pageContext.request.contextPath}/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -241,7 +241,7 @@
 
                         <li>
                             <a href="#">
-                                <img src="assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                <img src="${pageContext.request.contextPath}/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -258,7 +258,7 @@
 
                         <li>
                             <a href="#">
-                                <img src="assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                <img src="${pageContext.request.contextPath}/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -274,7 +274,7 @@
                         </li>
 
                         <li>
-                            <a href="inbox.html">
+                            <a href="#">
                                 See all messages
                                 <i class="icon-arrow-right"></i>
                             </a>
@@ -284,10 +284,10 @@
 
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+                        <img class="nav-user-photo" src="${pageContext.request.contextPath}/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎您,</small>
-									<s:property value="#session.existEmployee.ename"/>
+									Jason
 								</span>
 
                         <i class="icon-caret-down"></i>
@@ -369,14 +369,14 @@
             </div><!-- #sidebar-shortcuts -->
 
             <ul class="nav nav-list">
-                <li class="active">
-                    <a href="${pageContext.request.contextPath}/user.jsp">
+                <li>
+                    <a href="${pageContext.request.contextPath}/jsp/user.jsp">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> 用户中心 </span>
                     </a>
                 </li>
 
-                <li>
+                <li class="active open">
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-group"></i>
 
@@ -388,7 +388,7 @@
                     </a>
 
                     <ul class="submenu">
-                        <li>
+                        <li class="active">
                             <a href="${pageContext.request.contextPath}/department_findAll.action">
                                 <i class="icon-double-angle-right"></i>
                                 部门管理
@@ -426,7 +426,10 @@
                         <a href="#">主页</a>
                     </li>
 
-                    <li class="active">用户中心</li>
+                    <li>
+                        <a href="#">人力资源部</a>
+                    </li>
+                    <li class="active">部门管理</li>
                 </ul><!-- .breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -443,7 +446,88 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="header smaller lighter blue">部门管理</h3>
+                                <div class="table-responsive">
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">编号</th>
+                                            <th>部门名称</th>
+                                            <th>部门描述</th>
+                                            <th>部门名称</th>
+                                            <th>部门名称</th>
+                                            <th>部门名称</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
 
+                                        <tbody>
+                                        <s:iterator value="Dlist" var="d">
+                                            <tr>
+                                                <td class="center"><s:property value="#d.did"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td><s:property value="#d.ddesc"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td>
+                                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                                        <a class="blue" href="#">
+                                                            <i class="icon-zoom-in bigger-130"></i>
+                                                        </a>
+
+                                                        <a class="green" href="#">
+                                                            <i class="icon-pencil bigger-130"></i>
+                                                        </a>
+
+                                                        <a class="red" href="#">
+                                                            <i class="icon-trash bigger-130"></i>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                        <div class="inline position-relative">
+                                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="icon-caret-down icon-only bigger-120"></i>
+                                                            </button>
+
+                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                                <li>
+                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                                        <span class="blue">
+                                                                                            <i class="icon-zoom-in bigger-120"></i>
+                                                                                        </span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li>
+                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                                        <span class="green">
+                                                                                            <i class="icon-edit bigger-120"></i>
+                                                                                        </span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li>
+                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                        <span class="red">
+                                                                                            <i class="icon-trash bigger-120"></i>
+                                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </s:iterator>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -519,31 +603,71 @@
 <!--[if !IE]> -->
 
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 </script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${pageContext.request.contextPath}/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 <script type="text/javascript">
-    if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/typeahead-bs2.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
+<script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.bootstrap.js"></script>
+
 <!-- ace scripts -->
 
-<script src="assets/js/ace-elements.min.js"></script>
-<script src="assets/js/ace.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/ace-elements.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
+
+<script type="text/javascript">
+    jQuery(function($) {
+        var oTable1 = $('#sample-table-2').dataTable( {
+            "aoColumns": [
+                { "bSortable": false },
+                null, null,null, null, null,
+                { "bSortable": false }
+            ] } );
+
+
+        $('table th input:checkbox').on('click' , function(){
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function(){
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+        });
+
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+    })
+</script>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>
