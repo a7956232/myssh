@@ -12,17 +12,17 @@
             <result name="addSuccess" type="redirectAction">employee_findAll.action</result>
             <result name="updateSuccess" type="redirectAction">employee_findAll.action</result>
             <result name="deleteSuccess" type="redirectAction">employee_findAll.action</result>
-            <result name="editSuccess">/jsp/edit.jsp</result>
+            <result name="editSuccess">/jsp/empEdit.jsp</result>
             <result name="logout">/login.jsp</result>
         </action>
 
         <action name="department_*" class="departmentAction" method="{1}">
             <result name="findAll">/jsp/department.jsp</result>
-            <result name="addShow">/frame/addDepartment.jsp</result>
+            <!--<result name="addShow">/frame/addDepartment.jsp</result>-->
             <result name="addSuccess" type="redirectAction">department_findAll.action</result>
             <result name="updateSuccess" type="redirectAction">department_findAll.action</result>
             <result name="deleteSuccess" type="redirectAction">department_findAll.action</result>
-            <result name="editSuccess">/frame/editDep.jsp</result>
+            <result name="editSuccess">/jsp/depEdit.jsp</result>
         </action>
     </package>
 </struts>

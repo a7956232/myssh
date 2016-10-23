@@ -513,7 +513,7 @@
                                                                     </li>
 
                                                                     <li>
-                                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                        <a href="javascript:void(0)" onclick="update(<s:property value="#e.eid"/>)" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                                                         <span class="green">
                                                                                             <i class="icon-edit bigger-120"></i>
                                                                                         </span>

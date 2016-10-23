@@ -478,11 +478,11 @@
                                                             <i class="icon-zoom-in bigger-130"></i>
                                                         </a>
 
-                                                        <a class="green" href="#">
+                                                        <a class="green" href="javascript:void(0)" onclick="update(<s:property value="#d.did"/>)">
                                                             <i class="icon-pencil bigger-130"></i>
                                                         </a>
 
-                                                        <a class="red" href="#">
+                                                        <a class="red" href="${pageContext.request.contextPath}/department_delete.action?did=<s:property value="#d.did"/>">
                                                             <i class="icon-trash bigger-130"></i>
                                                         </a>
                                                     </div>
@@ -503,7 +503,7 @@
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                    <a href="javascript:void(0)" onclick="update(<s:property value="#d.did"/>)" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                                                         <span class="green">
                                                                                             <i class="icon-edit bigger-120"></i>
                                                                                         </span>
@@ -511,7 +511,7 @@
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <a href="${pageContext.request.contextPath}/department_delete.action?did=<s:property value="#d.did"/>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                                                         <span class="red">
                                                                                             <i class="icon-trash bigger-120"></i>
                                                                                         </span>
@@ -528,7 +528,62 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- PAGE CONTENT ENDS -->
+
+                        <div id="modal-edit-form" class="modal" tabindex="-1">
+
+                        </div>
+
+                        <h4 class="pink">
+                            <a class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-form"><i class="icon icon-plus-sign"></i>添加部门</a>
+                        </h4>
+                        <div id="modal-form" class="modal" tabindex="-1">
+                            <div class="modal-dialog">
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="blue bigger">添加部门</h4>
+                                    </div>
+
+                                    <div class="modal-body overflow-visible">
+                                        <div class="row">
+                                            <form action="department_add" method="post" id="addForm">
+                                                <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+
+                                                    <div class="form-group">
+                                                        <label>部门名称</label>
+                                                        <div>
+                                                            <s:textfield name="dname"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-4"></div>
+
+                                                    <div class="form-group">
+                                                        <label>部门描述</label>
+                                                        <div>
+                                                            <s:textarea name="ddesc"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-sm" data-dismiss="modal">
+                                            <i class="icon-remove"></i>
+                                            取消
+                                        </button>
+
+                                        <a type="button" class="btn btn-sm btn-primary" href="javascript:document.getElementById('addForm').submit()">
+                                            <i class="icon-ok"></i>
+                                            保存
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.page-content -->
@@ -667,6 +722,11 @@
             return 'left';
         }
     })
+
+    function update(obj){
+        $('#modal-edit-form').load("department_edit.action?did="+obj);
+        $('#modal-edit-form').modal();
+    }
 </script>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
