@@ -488,7 +488,7 @@
                                                                 <i class="icon-zoom-in bigger-130"></i>
                                                             </a>
 
-                                                            <a class="green" href="#">
+                                                            <a class="green" href="javascript:void(0)" onclick="update(<s:property value="#e.eid"/>)">
                                                                 <i class="icon-pencil bigger-130"></i>
                                                             </a>
 
@@ -521,7 +521,7 @@
                                                                     </li>
 
                                                                     <li>
-                                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                        <a href="${pageContext.request.contextPath}/employee_delete.action?eid=<s:property value="#e.eid"/>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                                                         <span class="red">
                                                                                             <i class="icon-trash bigger-120"></i>
                                                                                         </span>
@@ -538,6 +538,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div id="modal-edit-form" class="modal" tabindex="-1">
+
+                        </div>
+
                         <h4 class="pink">
                             <a class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-form"><i class="icon icon-plus-sign"></i>添加员工</a>
                         </h4>
@@ -576,12 +581,7 @@
                                                         <label>性别</label>
 
                                                         <div>
-                                                            <label class="radio-inline">
-                                                                <input type="radio"  value="男" name="sex" checked>男
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio"  value="女" name="sex">女
-                                                            </label>
+                                                            <s:radio name="sex" list="{'男','女'}"/>
                                                         </div>
                                                     </div>
 
@@ -1062,6 +1062,11 @@
          */
 
     });
+
+    function update(obj){
+        $('#modal-edit-form').load("employee_edit.action?eid="+obj);
+        $('#modal-edit-form').modal();
+    }
 </script>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
