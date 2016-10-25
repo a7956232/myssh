@@ -2,11 +2,11 @@
   Created by IntelliJ IDEA.
   User: 95
   Date: 2016/10/21
-  Time: 20:03
+  Time: 21:04
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +26,7 @@
     <![endif]-->
 
     <!-- page specific plugin styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jquery-ui-1.10.3.custom.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/chosen.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/datepicker.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap-timepicker.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/daterangepicker.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/colorpicker.css" />
+
     <!-- fonts -->
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
@@ -58,11 +53,6 @@
     <script src="${pageContext.request.contextPath}/assets/js/html5shiv.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .modal-dialog{
-            width: 400px;
-        }
-    </style>
 </head>
 
 <body>
@@ -297,7 +287,7 @@
                         <img class="nav-user-photo" src="${pageContext.request.contextPath}/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎您,</small>
-									<s:property value="#session.existEmployee.ename"/>
+									Jason
 								</span>
 
                         <i class="icon-caret-down"></i>
@@ -380,7 +370,7 @@
 
             <ul class="nav nav-list">
                 <li>
-                    <a href="${pageContext.request.contextPath}/jsp/user.jsp">
+                    <a href="${pageContext.request.contextPath}/user.jsp">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> 用户中心 </span>
                     </a>
@@ -398,15 +388,15 @@
                     </a>
 
                     <ul class="submenu">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/department_findAll.action">
+                        <li class="active">
+                            <a href="${pageContext.request.contextPath}/department_list.action">
                                 <i class="icon-double-angle-right"></i>
                                 部门管理
                             </a>
                         </li>
 
-                        <li class="active">
-                            <a href="${pageContext.request.contextPath}/employee_findAll.action">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/employee_list.action">
                                 <i class="icon-double-angle-right"></i>
                                 员工管理
                             </a>
@@ -439,7 +429,7 @@
                     <li>
                         <a href="#">人力资源部</a>
                     </li>
-                    <li class="active">员工管理</li>
+                    <li class="active">部门管理</li>
                 </ul><!-- .breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -458,81 +448,81 @@
                         <!-- PAGE CONTENT BEGINS -->
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 class="header smaller lighter blue">员工管理</h3>
+                                <h3 class="header smaller lighter blue">部门管理</h3>
                                 <div class="table-responsive">
                                     <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
                                             <th class="center">编号</th>
-                                            <th>员工姓名</th>
-                                            <th>性别</th>
-                                            <th>出生日期</th>
-                                            <th>入职时间</th>
-                                            <th>所属部门</th>
+                                            <th>部门名称</th>
+                                            <th>部门描述</th>
+                                            <th>部门名称</th>
+                                            <th>部门名称</th>
+                                            <th>部门名称</th>
                                             <th></th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            <s:iterator value="Elist" var="e">
-                                                <tr>
-                                                    <td class="center"><s:property value="#e.eno"/></td>
-                                                    <td><s:property value="#e.ename"/></td>
-                                                    <td><s:property value="#e.sex"/></td>
-                                                    <td><s:date name="#e.birthday" format="yyyy-MM-dd"/></td>
-                                                    <td><s:date name="#e.joinDate" format="yyyy-MM-dd"/></td>
-                                                    <td><s:property value="#e.department.dname"/></td>
-                                                    <td>
-                                                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                            <a class="blue" href="#">
-                                                                <i class="icon-zoom-in bigger-130"></i>
-                                                            </a>
+                                        <s:iterator value="Dlist" var="d">
+                                            <tr>
+                                                <td class="center"><s:property value="#d.did"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td><s:property value="#d.ddesc"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td><s:property value="#d.dname"/></td>
+                                                <td>
+                                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                                        <a class="blue" href="#">
+                                                            <i class="icon-zoom-in bigger-130"></i>
+                                                        </a>
 
-                                                            <a class="green" href="javascript:void(0)" onclick="update(<s:property value="#e.eid"/>)">
-                                                                <i class="icon-pencil bigger-130"></i>
-                                                            </a>
+                                                        <a class="green" href="javascript:void(0)" onclick="update(<s:property value="#d.did"/>)">
+                                                            <i class="icon-pencil bigger-130"></i>
+                                                        </a>
 
-                                                            <a class="red" href="${pageContext.request.contextPath}/employee_delete.action?eid=<s:property value="#e.eid"/>">
-                                                                <i class="icon-trash bigger-130"></i>
-                                                            </a>
-                                                        </div>
+                                                        <a class="red" href="${pageContext.request.contextPath}/department_delete.action?did=<s:property value="#d.did"/>">
+                                                            <i class="icon-trash bigger-130"></i>
+                                                        </a>
+                                                    </div>
 
-                                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                            <div class="inline position-relative">
-                                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                    <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                </button>
+                                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                        <div class="inline position-relative">
+                                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="icon-caret-down icon-only bigger-120"></i>
+                                                            </button>
 
-                                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                    <li>
-                                                                        <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                                <li>
+                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
                                                                                         <span class="blue">
                                                                                             <i class="icon-zoom-in bigger-120"></i>
                                                                                         </span>
-                                                                        </a>
-                                                                    </li>
+                                                                    </a>
+                                                                </li>
 
-                                                                    <li>
-                                                                        <a href="javascript:void(0)" onclick="update(<s:property value="#e.eid"/>)" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                <li>
+                                                                    <a href="javascript:void(0)" onclick="update(<s:property value="#d.did"/>)" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                                                         <span class="green">
                                                                                             <i class="icon-edit bigger-120"></i>
                                                                                         </span>
-                                                                        </a>
-                                                                    </li>
+                                                                    </a>
+                                                                </li>
 
-                                                                    <li>
-                                                                        <a href="${pageContext.request.contextPath}/employee_delete.action?eid=<s:property value="#e.eid"/>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <li>
+                                                                    <a href="${pageContext.request.contextPath}/department_delete.action?did=<s:property value="#d.did"/>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                                                         <span class="red">
                                                                                             <i class="icon-trash bigger-120"></i>
                                                                                         </span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            </s:iterator>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </s:iterator>
                                         </tbody>
                                     </table>
                                 </div>
@@ -544,7 +534,7 @@
                         </div>
 
                         <h4 class="pink">
-                            <a class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-form"><i class="icon icon-plus-sign"></i>添加员工</a>
+                            <a class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-form"><i class="icon icon-plus-sign"></i>添加部门</a>
                         </h4>
                         <div id="modal-form" class="modal" tabindex="-1">
                             <div class="modal-dialog">
@@ -552,64 +542,27 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="blue bigger">添加员工</h4>
+                                        <h4 class="blue bigger">添加部门</h4>
                                     </div>
 
                                     <div class="modal-body overflow-visible">
                                         <div class="row">
-                                            <form action="employee_add" method="post" id="addForm">
+                                            <form action="department_add" method="post" id="addForm">
                                                 <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+
                                                     <div class="form-group">
-                                                        <label>所属部门</label>
+                                                        <label>部门名称</label>
                                                         <div>
-                                                           <s:select name="department.did" list="Dlist" listKey="did" listValue="dname" headerKey="" headerValue="--请选择--" />
+                                                            <s:textfield name="dname"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="space-4"></div>
 
                                                     <div class="form-group">
-                                                        <label>姓名</label>
+                                                        <label>部门描述</label>
                                                         <div>
-                                                            <input class="input-large" type="text" name="ename"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="space-4"></div>
-
-                                                    <div class="form-group">
-                                                        <label>性别</label>
-
-                                                        <div>
-                                                            <s:radio name="sex" list="{'男','女'}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="space-4"></div>
-
-                                                    <div class="form-group">
-                                                        <label>编号</label>
-                                                        <div>
-                                                            <input class="input-large" type="text" name="eno"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="space-4"></div>
-
-                                                    <div class="form-group">
-                                                        <label>出生日期</label>
-                                                        <div>
-                                                            <input class="input-large" type="text" name="birthday"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="space-4"></div>
-
-                                                    <div class="form-group">
-                                                        <label>入职时间</label>
-
-                                                        <div>
-                                                            <input class="input-large" type="text" name="joinDate"/>
+                                                            <s:textarea name="ddesc"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -726,20 +679,6 @@
 
 <script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/chosen.jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/date-time/moment.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/date-time/daterangepicker.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap-colorpicker.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.knob.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.autosize.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.maskedinput.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap-tag.min.js"></script>
 
 <!-- ace scripts -->
 
@@ -783,288 +722,9 @@
             return 'left';
         }
     })
-</script>
-
-<script type="text/javascript">
-    jQuery(function($) {
-        $('#id-disable-check').on('click', function() {
-            var inp = $('#form-input-readonly').get(0);
-            if(inp.hasAttribute('disabled')) {
-                inp.setAttribute('readonly' , 'true');
-                inp.removeAttribute('disabled');
-                inp.value="This text field is readonly!";
-            }
-            else {
-                inp.setAttribute('disabled' , 'disabled');
-                inp.removeAttribute('readonly');
-                inp.value="This text field is disabled!";
-            }
-        });
-
-
-        $(".chosen-select").chosen();
-        $('#chosen-multiple-style').on('click', function(e){
-            var target = $(e.target).find('input[type=radio]');
-            var which = parseInt(target.val());
-            if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
-            else $('#form-field-select-4').removeClass('tag-input-style');
-        });
-
-
-        $('[data-rel=tooltip]').tooltip({container:'body'});
-        $('[data-rel=popover]').popover({container:'body'});
-
-        $('textarea[class*=autosize]').autosize({append: "\n"});
-        $('textarea.limited').inputlimiter({
-            remText: '%n character%s remaining...',
-            limitText: 'max allowed : %n.'
-        });
-
-        $.mask.definitions['~']='[+-]';
-        $('.input-mask-date').mask('99/99/9999');
-        $('.input-mask-phone').mask('(999) 999-9999');
-        $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
-        $(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
-
-
-
-        $( "#input-size-slider" ).css('width','200px').slider({
-            value:1,
-            range: "min",
-            min: 1,
-            max: 8,
-            step: 1,
-            slide: function( event, ui ) {
-                var sizing = ['', 'input-sm', 'input-lg', 'input-mini', 'input-small', 'input-medium', 'input-large', 'input-xlarge', 'input-xxlarge'];
-                var val = parseInt(ui.value);
-                $('#form-field-4').attr('class', sizing[val]).val('.'+sizing[val]);
-            }
-        });
-
-        $( "#input-span-slider" ).slider({
-            value:1,
-            range: "min",
-            min: 1,
-            max: 12,
-            step: 1,
-            slide: function( event, ui ) {
-                var val = parseInt(ui.value);
-                $('#form-field-5').attr('class', 'col-xs-'+val).val('.col-xs-'+val);
-            }
-        });
-
-
-        $( "#slider-range" ).css('height','200px').slider({
-            orientation: "vertical",
-            range: true,
-            min: 0,
-            max: 100,
-            values: [ 17, 67 ],
-            slide: function( event, ui ) {
-                var val = ui.values[$(ui.handle).index()-1]+"";
-
-                if(! ui.handle.firstChild ) {
-                    $(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
-                }
-                $(ui.handle.firstChild).show().children().eq(1).text(val);
-            }
-        }).find('a').on('blur', function(){
-            $(this.firstChild).hide();
-        });
-
-        $( "#slider-range-max" ).slider({
-            range: "max",
-            min: 1,
-            max: 10,
-            value: 2
-        });
-
-        $( "#eq > span" ).css({width:'90%', 'float':'left', margin:'15px'}).each(function() {
-            // read initial values from markup and remove that
-            var value = parseInt( $( this ).text(), 10 );
-            $( this ).empty().slider({
-                value: value,
-                range: "min",
-                animate: true
-
-            });
-        });
-
-
-        $('#id-input-file-1 , #id-input-file-2').ace_file_input({
-            no_file:'No File ...',
-            btn_choose:'Choose',
-            btn_change:'Change',
-            droppable:false,
-            onchange:null,
-            thumbnail:false //| true | large
-            //whitelist:'gif|png|jpg|jpeg'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
-
-        $('#id-input-file-3').ace_file_input({
-            style:'well',
-            btn_choose:'Drop files here or click to choose',
-            btn_change:null,
-            no_icon:'icon-cloud-upload',
-            droppable:true,
-            thumbnail:'small'//large | fit
-            //,icon_remove:null//set null, to hide remove/reset button
-            /**,before_change:function(files, dropped) {
-						//Check an example below
-						//or examples/file-upload.html
-						return true;
-					}*/
-            /**,before_remove : function() {
-						return true;
-					}*/
-            ,
-            preview_error : function(filename, error_code) {
-                //name of the file that failed
-                //error_code values
-                //1 = 'FILE_LOAD_FAILED',
-                //2 = 'IMAGE_LOAD_FAILED',
-                //3 = 'THUMBNAIL_FAILED'
-                //alert(error_code);
-            }
-
-        }).on('change', function(){
-            //console.log($(this).data('ace_input_files'));
-            //console.log($(this).data('ace_input_method'));
-        });
-
-
-        //dynamically change allowed formats by changing before_change callback function
-        $('#id-file-format').removeAttr('checked').on('change', function() {
-            var before_change
-            var btn_choose
-            var no_icon
-            if(this.checked) {
-                btn_choose = "Drop images here or click to choose";
-                no_icon = "icon-picture";
-                before_change = function(files, dropped) {
-                    var allowed_files = [];
-                    for(var i = 0 ; i < files.length; i++) {
-                        var file = files[i];
-                        if(typeof file === "string") {
-                            //IE8 and browsers that don't support File Object
-                            if(! (/\.(jpe?g|png|gif|bmp)$/i).test(file) ) return false;
-                        }
-                        else {
-                            var type = $.trim(file.type);
-                            if( ( type.length > 0 && ! (/^image\/(jpe?g|png|gif|bmp)$/i).test(type) )
-                                    || ( type.length == 0 && ! (/\.(jpe?g|png|gif|bmp)$/i).test(file.name) )//for android's default browser which gives an empty string for file.type
-                            ) continue;//not an image so don't keep this file
-                        }
-
-                        allowed_files.push(file);
-                    }
-                    if(allowed_files.length == 0) return false;
-
-                    return allowed_files;
-                }
-            }
-            else {
-                btn_choose = "Drop files here or click to choose";
-                no_icon = "icon-cloud-upload";
-                before_change = function(files, dropped) {
-                    return files;
-                }
-            }
-            var file_input = $('#id-input-file-3');
-            file_input.ace_file_input('update_settings', {'before_change':before_change, 'btn_choose': btn_choose, 'no_icon':no_icon})
-            file_input.ace_file_input('reset_input');
-        });
-
-
-
-
-        $('#spinner1').ace_spinner({value:0,min:0,max:200,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
-                .on('change', function(){
-                    //alert(this.value)
-                });
-        $('#spinner2').ace_spinner({value:0,min:0,max:10000,step:100, touch_spinner: true, icon_up:'icon-caret-up', icon_down:'icon-caret-down'});
-        $('#spinner3').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'icon-plus smaller-75', icon_down:'icon-minus smaller-75', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
-
-
-
-        $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-            $(this).prev().focus();
-        });
-        $('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
-            $(this).next().focus();
-        });
-
-        $('#timepicker1').timepicker({
-            minuteStep: 1,
-            showSeconds: true,
-            showMeridian: false
-        }).next().on(ace.click_event, function(){
-            $(this).prev().focus();
-        });
-
-        $('#colorpicker1').colorpicker();
-        $('#simple-colorpicker-1').ace_colorpicker();
-
-
-        $(".knob").knob();
-
-
-        //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
-        var tag_input = $('#form-field-tags');
-        if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) )
-        {
-            tag_input.tag(
-                    {
-                        placeholder:tag_input.attr('placeholder'),
-                        //enable typeahead by specifying the source array
-                        source: ace.variable_US_STATES,//defined in ace.js >> ace.enable_search_ahead
-                    }
-            );
-        }
-        else {
-            //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-            tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
-            //$('#form-field-tags').autosize({append: "\n"});
-        }
-
-
-
-
-        /////////
-        $('#modal-form input[type=file]').ace_file_input({
-            style:'well',
-            btn_choose:'Drop files here or click to choose',
-            btn_change:null,
-            no_icon:'icon-cloud-upload',
-            droppable:true,
-            thumbnail:'large'
-        })
-
-        //chosen plugin inside a modal will have a zero width because the select element is originally hidden
-        //and its width cannot be determined.
-        //so we set the width after modal is show
-        $('#modal-form').on('shown.bs.modal', function () {
-            $(this).find('.chosen-container').each(function(){
-                $(this).find('a:first-child').css('width' , '210px');
-                $(this).find('.chosen-drop').css('width' , '210px');
-                $(this).find('.chosen-search input').css('width' , '200px');
-            });
-        })
-        /**
-         //or you can activate the chosen plugin after modal is shown
-         //this way select element becomes visible with dimensions and chosen works as expected
-         $('#modal-form').on('shown', function () {
-					$(this).find('.modal-chosen').chosen();
-				})
-         */
-
-    });
 
     function update(obj){
-        $('#modal-edit-form').load("employee_edit.action?eid="+obj);
+        $('#modal-edit-form').load("department_edit.action?did="+obj);
         $('#modal-edit-form').modal();
     }
 </script>

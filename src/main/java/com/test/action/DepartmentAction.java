@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.test.entity.Department;
 import com.test.entity.PageBean;
 import com.test.service.DepartmentService;
+import com.test.util.ActionUtil;
 
 import java.util.List;
 
@@ -32,41 +33,44 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
         this.departmentService = departmentService;
     }
 
-    public String findByPage(){
-        PageBean<Department> pageBean = departmentService.findByPage(currPage);
-        //将pageBean存入到值栈中
-        ActionContext.getContext().getValueStack().push(pageBean);
-        return "findByPage";
-    }
+//    public String findByPage(){
+//        PageBean<Department> pageBean = departmentService.findByPage(currPage);
+//        //将pageBean存入到值栈中
+//        ActionContext.getContext().getValueStack().push(pageBean);
+//        return "findByPage";
+//    }
 
-    public String findAll(){
+    public String list(){
         List<Department> list = departmentService.findAll();
         ActionContext.getContext().getValueStack().set("Dlist",list);
-        return "findAll";
+        return SUCCESS;
     }
 
     public String add(){
         departmentService.add(department);
-        return "addSuccess";
+        ActionUtil.setUrl("/department_list.action");
+        return ActionUtil.REDIRECT;
     }
 
-    public String addShow(){
-        return "addShow";
-    }
+//    public String addShow(){
+//        return "addShow";
+//    }
 
     public String edit(){
         department = departmentService.findById(department.getDid());
-        return "editSuccess";
+        return SUCCESS;
     }
 
     public String update(){
         departmentService.update(department);
-        return "updateSuccess";
+        ActionUtil.setUrl("/department_list.action");
+        return ActionUtil.REDIRECT;
     }
 
     public String delete(){
         department = departmentService.findById(department.getDid());
         departmentService.delete(department);
-        return "deleteSuccess";
+        ActionUtil.setUrl("/department_list.action");
+        return ActionUtil.REDIRECT;
     }
 }
