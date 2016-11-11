@@ -456,9 +456,9 @@
                                             <th class="center">编号</th>
                                             <th>部门名称</th>
                                             <th>部门描述</th>
-                                            <th>部门名称</th>
-                                            <th>部门名称</th>
-                                            <th>部门名称</th>
+                                            <%--<th>部门名称</th>--%>
+                                            <%--<th>部门名称</th>--%>
+                                            <%--<th>部门名称</th>--%>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -469,9 +469,9 @@
                                                 <td class="center"><s:property value="#d.did"/></td>
                                                 <td><s:property value="#d.dname"/></td>
                                                 <td><s:property value="#d.ddesc"/></td>
-                                                <td><s:property value="#d.dname"/></td>
-                                                <td><s:property value="#d.dname"/></td>
-                                                <td><s:property value="#d.dname"/></td>
+                                                <%--<td><s:property value="#d.dname"/></td>--%>
+                                                <%--<td><s:property value="#d.dname"/></td>--%>
+                                                <%--<td><s:property value="#d.dname"/></td>--%>
                                                 <td>
                                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                                         <a class="blue" href="#">
@@ -691,8 +691,8 @@
     jQuery(function($) {
         var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
-                { "bSortable": false },
-                null, null,null, null, null,
+                null,
+                null, null,
                 { "bSortable": false }
             ] } );
 
