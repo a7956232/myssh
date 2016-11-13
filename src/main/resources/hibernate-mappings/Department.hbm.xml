@@ -10,7 +10,7 @@
         <property name="ddesc" column="ddesc" length="100"/>
 
         <!-- 关联关系映射:一对多 -->
-        <set name="employees" inverse="true">
+        <set name="employees" inverse="true" cascade="delete">
             <key column="dno"/>
             <one-to-many class="com.test.entity.Employee"/>
         </set>
