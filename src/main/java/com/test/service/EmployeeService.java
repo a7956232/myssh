@@ -8,19 +8,9 @@ import java.util.List;
 /**
  * Created by 95 on 2016/10/12.
  */
-public interface EmployeeService {
+public interface EmployeeService extends BaseService<Employee>{
 
-    Employee login(Employee employee);
+    List<Employee> findAll();
 
-    PageBean<Employee> findByPage(Integer currPage);
-
-    void add(Employee employee);
-
-    Employee findById(Integer eid);
-
-    void delete(Employee employee);
-
-    void update(Employee employee);
-
-    List findAll();
+    Employee validateLoginInfo(String username, String password);
 }

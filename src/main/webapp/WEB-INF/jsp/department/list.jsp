@@ -287,7 +287,7 @@
                         <img class="nav-user-photo" src="${pageContext.request.contextPath}/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎您,</small>
-									Jason
+									<s:property value="#session.existEmployee.ename"/>
 								</span>
 
                         <i class="icon-caret-down"></i>
@@ -370,7 +370,7 @@
 
             <ul class="nav nav-list">
                 <li>
-                    <a href="${pageContext.request.contextPath}/user.jsp">
+                    <a href="${pageContext.request.contextPath}/employee_user.action">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> 用户中心 </span>
                     </a>

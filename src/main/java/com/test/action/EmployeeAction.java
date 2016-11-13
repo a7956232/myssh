@@ -1,56 +1,34 @@
 package com.test.action;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import com.test.entity.Department;
 import com.test.entity.Employee;
-import com.test.entity.PageBean;
 import com.test.service.DepartmentService;
 import com.test.service.EmployeeService;
 import com.test.util.ActionUtil;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * Created by 95 on 2016/10/12.
  */
-public class EmployeeAction extends ActionSupport implements ModelDriven<Employee>{
-    private Employee employee = new Employee();
-    @Override
-    public Employee getModel() {
-        return employee;
-    }
+@Controller("employeeAction")
+@Scope("prototype")
+public class EmployeeAction extends BaseAction<Employee>{
+
+    @Resource
     private EmployeeService employeeService;
+    @Resource
     private DepartmentService departmentService;
 
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-
-    public void setDepartmentService(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
-
-    private Integer currPage = 1;
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
-
-    public String login(){
-        Employee existEmployee = employeeService.login(employee);
-        if(existEmployee == null){
-            this.addActionError("用户名或密码错误！");
-            System.out.println("=============="+ActionContext.getContext().getSession());
-            return INPUT;
-        }else {
-            ActionContext.getContext().getSession().put("existEmployee",existEmployee);
-            System.out.println("=============="+ActionContext.getContext().getSession());
-            ActionUtil.setUrl("/user.jsp");
-            return ActionUtil.REDIRECT;
-        }
-    }
+//    private Integer currPage = 1;
+//
+//    public void setCurrPage(int currPage) {
+//        this.currPage = currPage;
+//    }
 
 //    public String findByPage(){
 //        PageBean<Employee> pageBean = employeeService.findByPage(currPage);
@@ -74,27 +52,27 @@ public class EmployeeAction extends ActionSupport implements ModelDriven<Employe
 //    }
 
     public String add(){
-        employeeService.add(employee);
+        employeeService.saveEntity(model);
         ActionUtil.setUrl("/employee_list.action");
         return ActionUtil.REDIRECT;
     }
 
     public String delete(){
-        employee = employeeService.findById(employee.getEid());
-        employeeService.delete(employee);
+        model = employeeService.getEntity(model.getEid());
+        employeeService.deleteEntity(model);
         ActionUtil.setUrl("/employee_list.action");
         return ActionUtil.REDIRECT;
     }
 
     public String edit(){
-        employee = employeeService.findById(employee.getEid());
+        model = employeeService.getEntity(model.getEid());
         List<Department> list = departmentService.findAll();
         ActionContext.getContext().getValueStack().set("list",list);
         return SUCCESS;
     }
 
     public String update(){
-        employeeService.update(employee);
+        employeeService.updateEntity(model);
         ActionUtil.setUrl("/employee_list.action");
         return ActionUtil.REDIRECT;
     }
@@ -104,5 +82,9 @@ public class EmployeeAction extends ActionSupport implements ModelDriven<Employe
             ActionContext.getContext().getSession().remove("existEmployee");
         }
         return INPUT;
+    }
+
+    public String user(){
+        return "user";
     }
 }

@@ -224,7 +224,7 @@
 
                         <li>
                             <a href="#">
-                                <img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                <img src="../../../assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -241,7 +241,7 @@
 
                         <li>
                             <a href="#">
-                                <img src="assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                <img src="../../../assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -258,7 +258,7 @@
 
                         <li>
                             <a href="#">
-                                <img src="assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                <img src="../../../assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -370,7 +370,7 @@
 
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}/user.jsp">
+                    <a href="${pageContext.request.contextPath}/employee_user.action">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> 用户中心 </span>
                     </a>

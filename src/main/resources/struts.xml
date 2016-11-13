@@ -4,6 +4,19 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="ssh" extends="struts-default" namespace="/">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.test.interceptor.LoginInterceptor"/>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="loginStack"/>
+
+        <global-results>
+            <result name="login">/WEB-INF/jsp/login/login.jsp</result>
+        </global-results>
         <!--<action name="employee_*" class="employeeAction" method="{1}">-->
             <!--<result name="input">/user.jsp</result>-->
             <!--<result name="success" type="redirect">/jsp/user.jsp</result>-->
@@ -27,8 +40,9 @@
 
         <action name="*_*" class="{1}Action" method="{2}">
             <result>/WEB-INF/jsp/{1}/{2}.jsp</result>
-            <result name="input">/login.jsp</result>
+            <result name="input">/WEB-INF/jsp/login/login.jsp</result>
             <result name="redirect" type="redirect">${url}</result>
+            <result name="user">/WEB-INF/jsp/login/user.jsp</result>
         </action>
     </package>
 </struts>

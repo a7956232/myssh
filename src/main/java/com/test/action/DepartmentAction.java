@@ -7,31 +7,27 @@ import com.test.entity.Department;
 import com.test.entity.PageBean;
 import com.test.service.DepartmentService;
 import com.test.util.ActionUtil;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * Created by 95 on 2016/10/12.
  */
-public class DepartmentAction extends ActionSupport implements ModelDriven<Department>{
+@Controller("departmentAction")
+@Scope("prototype")
+public class DepartmentAction extends BaseAction<Department>{
 
-    private Department department = new Department();
-    @Override
-    public Department getModel() {
-        return department;
-    }
+//    private Integer currPage = 1;
+//
+//    public void setCurrPage(Integer currPage) {
+//        this.currPage = currPage;
+//    }
 
-    private Integer currPage = 1;
-
-    public void setCurrPage(Integer currPage) {
-        this.currPage = currPage;
-    }
-
+    @Resource
     private DepartmentService departmentService;
-
-    public void setDepartmentService(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
 
 //    public String findByPage(){
 //        PageBean<Department> pageBean = departmentService.findByPage(currPage);
@@ -47,7 +43,7 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
     }
 
     public String add(){
-        departmentService.add(department);
+        departmentService.saveEntity(model);
         ActionUtil.setUrl("/department_list.action");
         return ActionUtil.REDIRECT;
     }
@@ -57,19 +53,19 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 //    }
 
     public String edit(){
-        department = departmentService.findById(department.getDid());
+        model = departmentService.getEntity(model.getDid());
         return SUCCESS;
     }
 
     public String update(){
-        departmentService.update(department);
+        departmentService.updateEntity(model);
         ActionUtil.setUrl("/department_list.action");
         return ActionUtil.REDIRECT;
     }
 
     public String delete(){
-        department = departmentService.findById(department.getDid());
-        departmentService.delete(department);
+        model = departmentService.getEntity(model.getDid());
+        departmentService.deleteEntity(model);
         ActionUtil.setUrl("/department_list.action");
         return ActionUtil.REDIRECT;
     }
